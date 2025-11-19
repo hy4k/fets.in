@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added viewport meta tag -->
+  <title>FETS - Your Educational Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Apply Poppins font to the body inside the iframe */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
+
+    #chatbox {
+      /* Use 100% width/height to fill the iframe container */
+      width: 100%;
+      height: 100%;
+      /* Removed fixed positioning */
+      background: #FFFFFF; /* White background */
+      color: #333; /* Default text color */
+      border-radius: 0; /* Remove radius, handled by iframe container */
+      box-shadow: none; /* Remove shadow, handled by iframe container */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      /* Removed z-index */
+    }
+
+    #chatbox h3 {
+      margin: 0;
+      padding: 10px 15px; /* Adjusted padding */
+      background-color: #0FA4AF; /* brand-teal-medium */
+      color: #FFFFFF; /* White text */
+      font-size: 15px; /* Slightly smaller */
+      font-weight: 600;
+      text-align: center; /* Center title */
+      flex-shrink: 0; /* Prevent header shrinking */
+    }
+
+    #messages {
+      flex-grow: 1; /* Allow message area to grow */
+      padding: 15px; /* Increased padding */
+      overflow-y: auto;
+      font-size: 13px; /* Slightly smaller */
+      background-color: #EBE9E1; /* brand-beige */
+    }
+
+    .msg {
+      display: flex; /* Use flexbox for alignment */
+      margin-bottom: 12px; /* Increased spacing */
+      max-width: 85%; /* Limit message width */
+    }
+
+    .msg-content {
+        padding: 8px 12px;
+        border-radius: 18px; /* Rounded bubbles */
+        line-height: 1.5;
+        word-wrap: break-word; /* Prevent long words overflowing */
+        font-weight: 500; /* Slightly bolder text */
+    }
+
+    .msg.user-msg {
+       margin-left: auto; /* Align user messages to right */
+       flex-direction: row-reverse; /* Keep content aligned right */
+    }
+    .msg.user-msg .msg-content {
+       background-color: #FFCE32; /* brand-gold */
+       color: #333;
+       border-bottom-right-radius: 4px; /* Slightly different corner */
+    }
+
+     .msg.ai-msg {
+       margin-right: auto; /* Align AI messages to left */
+     }
+     .msg.ai-msg .msg-content {
+       background-color: #FFFFFF; /* White */
+       color: #333;
+       border: 1px solid #ddd;
+       border-bottom-left-radius: 4px; /* Slightly different corner */
+     }
+
+    /* Style for Typing... */
+    .msg.ai-msg.typing .msg-content {
+        color: #888;
+        font-style: italic;
+    }
+
+
+    #inputArea {
+      display: flex;
+      align-items: center; /* Vertically align items */
+      padding: 10px 15px; /* Adjusted padding */
+      background-color: #FFFFFF; /* White background */
+      border-top: 1px solid #E0E0E0; /* Lighter separator */
+      flex-shrink: 0; /* Prevent input area shrinking */
+    }
+
+    #input {
+      flex-grow: 1; /* Allow input to grow */
+      padding: 10px 15px; /* Adjusted padding */
+      border: 1px solid #ccc; /* Visible border */
+      border-radius: 20px; /* Pill shape */
+      margin-right: 10px;
+      font-family: inherit;
+      font-size: 13px;
+      background-color: #FFF;
+      color: #333;
+      height: 40px; /* Fixed height */
+      box-sizing: border-box; /* Include padding/border in height */
+    }
+     #input::placeholder {
+       color: #999;
+     }
+
+
+    #send {
+      background-color: #0FA4AF; /* brand-teal-medium */
+      color: #FFFFFF; /* White text */
+      border: none;
+      padding: 0 15px; /* Adjusted padding */
+      border-radius: 20px; /* Pill shape */
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+      transition: background-color 0.2s;
+      height: 40px; /* Match input height */
+      flex-shrink: 0; /* Prevent button shrinking */
+    }
+    #send:hover {
+       background-color: #024950; /* brand-teal-dark */
+    }
+     #send:disabled {
+       background-color: #ccc;
+       cursor: not-allowed;
+     }
+  </style>
+</head>
+<body style="font-family: 'Poppins', sans-serif;"> <!-- Apply font here -->
+
+  <!-- Removed demo heading -->
+
+  <div id="chatbox">
+    <h3>🎓 FETS</h3>
+    <div id="messages">
+      <!-- Messages will be appended here by JS -->
+      <div class="msg ai-msg"><div class="msg-content">Hey! I’m here to help you with exams, slots, and mocks. Ask away!</div></div>
+    </div>
+    <div id="inputArea">
+      <input type="text" id="input" placeholder="Type your question..." />
+      <button id="send">Send</button>
+    </div>
+  </div>
+
+  <script src="assistant_enhanced.js"></script> <!-- Enhanced FETS AI Assistant -->
+</body>
+</html>

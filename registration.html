@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - FETS | Create Your Account</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #f6ad55;
+            --yellow-accent: #ffd700;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --success-color: #48bb78;
+            --error-color: #f56565;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .registration-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .registration-info {
+            background: linear-gradient(135deg, var(--accent-color), var(--yellow-accent));
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        .registration-info h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .registration-info p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .benefits {
+            list-style: none;
+        }
+
+        .benefits li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefits i {
+            color: white;
+        }
+
+        .registration-form {
+            padding: 3rem;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--text-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        .btn-register {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--yellow-accent));
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-register:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .login-link a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .registration-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .registration-info {
+                padding: 2rem;
+            }
+
+            .registration-form {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .back-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 2rem;
+                width: fit-content;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index-redesigned.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
+    <div class="registration-container">
+        <div class="registration-info">
+            <h2>Join FETS Community</h2>
+            <p>Create your account to access our comprehensive testing services and mock examinations.</p>
+            <ul class="benefits">
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    Access to mock tests
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    Easy exam booking
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    Progress tracking
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    Personalized dashboard
+                </li>
+                <li>
+                    <i class="fas fa-check-circle"></i>
+                    24/7 support access
+                </li>
+            </ul>
+        </div>
+
+        <div class="registration-form">
+            <div class="form-header">
+                <h1>Create Account</h1>
+                <p>Fill in your details to get started</p>
+            </div>
+
+            <form id="registrationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                        <div class="error-message" id="firstNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                        <div class="error-message" id="lastNameError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOfBirth">Date of Birth *</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                        <div class="error-message" id="dateOfBirthError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address *</label>
+                    <input type="text" id="address" name="address" required>
+                    <div class="error-message" id="addressError"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" name="city" required>
+                        <div class="error-message" id="cityError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <select id="state" name="state" required>
+                            <option value="">Select State</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="tamil-nadu">Tamil Nadu</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="stateError"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="interestedExams">Interested Exam Types</label>
+                    <select id="interestedExams" name="interestedExams" multiple>
+                        <option value="prometric">Prometric</option>
+                        <option value="pearson">Pearson VUE</option>
+                        <option value="ielts">IELTS</option>
+                        <option value="ets">ETS</option>
+                        <option value="cma">CMA US</option>
+                        <option value="mrcs">MRCS</option>
+                        <option value="acca">ACCA</option>
+                        <option value="microsoft">Microsoft</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password" required>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the Terms of Service and Privacy Policy *</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Subscribe to our newsletter for updates and exam tips</label>
+                </div>
+
+                <button type="submit" class="btn-register" id="registerBtn">
+                    Create Account
+                </button>
+
+                <div class="login-link">
+                    Already have an account? <a href="login.html">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Validation
+            let isValid = true;
+            
+            // Required field validation
+            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'dateOfBirth', 'address', 'city', 'state', 'password', 'confirmPassword'];
+            
+            requiredFields.forEach(field => {
+                if (!data[field] || data[field].trim() === '') {
+                    document.getElementById(field + 'Error').textContent = 'This field is required';
+                    isValid = false;
+                }
+            });
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (data.email && !emailRegex.test(data.email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                isValid = false;
+            }
+            
+            // Phone validation
+            const phoneRegex = /^[0-9]{10}$/;
+            if (data.phone && !phoneRegex.test(data.phone.replace(/\D/g, ''))) {
+                document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit phone number';
+                isValid = false;
+            }
+            
+            // Password validation
+            if (data.password && data.password.length < 8) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters long';
+                isValid = false;
+            }
+            
+            // Confirm password validation
+            if (data.password !== data.confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                isValid = false;
+            }
+            
+            // Terms validation
+            if (!document.getElementById('terms').checked) {
+                alert('Please accept the Terms of Service and Privacy Policy');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // Simulate registration process
+                const registerBtn = document.getElementById('registerBtn');
+                registerBtn.disabled = true;
+                registerBtn.textContent = 'Creating Account...';
+                
+                setTimeout(() => {
+                    // Show success message
+                    const successDiv = document.createElement('div');
+                    successDiv.className = 'success-message';
+                    successDiv.textContent = 'Account created successfully! Please check your email for verification.';
+                    
+                    const form = document.getElementById('registrationForm');
+                    form.insertBefore(successDiv, form.firstChild);
+                    
+                    // Reset form
+                    form.reset();
+                    registerBtn.disabled = false;
+                    registerBtn.textContent = 'Create Account';
+                    
+                    // In a real application, redirect to login or dashboard
+                    setTimeout(() => {
+                        alert('Registration successful! You can now login to your account.');
+                        // window.location.href = 'login.html';
+                    }, 2000);
+                }, 2000);
+            }
+        });
+        
+        // Real-time password strength indicator
+        document.getElementById('password').addEventListener('input', function() {
+            const password = this.value;
+            const errorDiv = document.getElementById('passwordError');
+            
+            if (password.length === 0) {
+                errorDiv.textContent = '';
+                return;
+            }
+            
+            let strength = 0;
+            let feedback = [];
+            
+            if (password.length >= 8) strength++;
+            else feedback.push('at least 8 characters');
+            
+            if (/[A-Z]/.test(password)) strength++;
+            else feedback.push('uppercase letter');
+            
+            if (/[a-z]/.test(password)) strength++;
+            else feedback.push('lowercase letter');
+            
+            if (/[0-9]/.test(password)) strength++;
+            else feedback.push('number');
+            
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            else feedback.push('special character');
+            
+            const strengthText = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'][strength];
+            const strengthColor = ['#f56565', '#ed8936', '#ecc94b', '#48bb78', '#38a169'][strength];
+            
+            if (strength < 3) {
+                errorDiv.innerHTML = `Password strength: <span style="color: ${strengthColor}">${strengthText}</span><br>Add: ${feedback.join(', ')}`;
+            } else {
+                errorDiv.innerHTML = `Password strength: <span style="color: ${strengthColor}">${strengthText}</span>`;
+            }
+        });
+    </script>
+</body>
+</html>

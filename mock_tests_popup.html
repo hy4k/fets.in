@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mock Tests</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom styles if needed, but prefer Tailwind */
+    .coupon-box {
+      background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+      padding: 1rem;
+      margin-top: 1.5rem; /* Increased margin */
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      max-width: 80%; /* Limit width */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    }
+    .split-full a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Align content to top */
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+      padding-top: 2rem; /* Add padding at the top */
+    }
+    .split-full img {
+       max-width: 180px; /* Increased max-width */
+       height: auto;
+       margin-bottom: 1.5rem; /* Increased margin */
+    }
+  </style>
+</head>
+<body class="flex flex-col h-screen font-['Montserrat',_sans-serif]">
+  <div class="flex flex-col h-screen">
+    <div class="h-1/2 split-full" style="background-color: #81b29a;"> 
+      <a href="https://form.jotform.com/243044458639463" target="_blank" rel="noopener">
+        <img src="./images/CMA US.png" alt="CMA US Logo">
+        <div class="coupon-box">
+          Apply coupon FETS25 get 50 % discount
+        </div>
+      </a>
+    </div>
+
+    <div class="h-1/2 split-full" style="background-color: #c7c8f5;"> 
+      <a href="https://form.jotform.com/243191761314453" target="_blank" rel="noopener">
+        <img src="./images/toefl-logo.png" alt="TOEFL Logo">
+        <div class="coupon-box">
+          Apply coupon FETS25 get 500 Rs discount
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

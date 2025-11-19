@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Exams - FETS | Practice Tests & Preparation</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d3748;
+            --accent-color: #f6ad55;
+            --yellow-accent: #ffd700;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .mock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .mock-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .mock-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .mock-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mock-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-color), var(--yellow-accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .mock-info h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .mock-info .duration {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .mock-details {
+            margin-bottom: 2rem;
+        }
+
+        .mock-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .mock-details li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .mock-details li:last-child {
+            border-bottom: none;
+        }
+
+        .btn-start {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-color), var(--yellow-accent));
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: background 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index-redesigned.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+
+        <div class="header">
+            <h1>Mock Examinations</h1>
+            <p>Practice with our comprehensive mock tests to prepare for your actual examination</p>
+        </div>
+
+        <div class="mock-grid">
+            <div class="mock-card">
+                <div class="mock-header">
+                    <div class="mock-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="mock-info">
+                        <h3>Prometric Mock Test</h3>
+                        <div class="duration">Duration: 3 hours</div>
+                    </div>
+                </div>
+                <div class="mock-details">
+                    <ul>
+                        <li><span>Questions:</span> <span>200</span></li>
+                        <li><span>Sections:</span> <span>4</span></li>
+                        <li><span>Passing Score:</span> <span>75%</span></li>
+                        <li><span>Attempts:</span> <span>Unlimited</span></li>
+                    </ul>
+                </div>
+                <button class="btn-start" onclick="startMockTest('prometric')">Start Mock Test</button>
+            </div>
+
+            <div class="mock-card">
+                <div class="mock-header">
+                    <div class="mock-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="mock-info">
+                        <h3>Pearson VUE Mock Test</h3>
+                        <div class="duration">Duration: 2.5 hours</div>
+                    </div>
+                </div>
+                <div class="mock-details">
+                    <ul>
+                        <li><span>Questions:</span> <span>150</span></li>
+                        <li><span>Sections:</span> <span>3</span></li>
+                        <li><span>Passing Score:</span> <span>70%</span></li>
+                        <li><span>Attempts:</span> <span>Unlimited</span></li>
+                    </ul>
+                </div>
+                <button class="btn-start" onclick="startMockTest('pearson')">Start Mock Test</button>
+            </div>
+
+            <div class="mock-card">
+                <div class="mock-header">
+                    <div class="mock-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="mock-info">
+                        <h3>IELTS Mock Test</h3>
+                        <div class="duration">Duration: 2 hours 45 minutes</div>
+                    </div>
+                </div>
+                <div class="mock-details">
+                    <ul>
+                        <li><span>Sections:</span> <span>4 (L,R,W,S)</span></li>
+                        <li><span>Band Score:</span> <span>0-9</span></li>
+                        <li><span>Format:</span> <span>Academic/General</span></li>
+                        <li><span>Attempts:</span> <span>Unlimited</span></li>
+                    </ul>
+                </div>
+                <button class="btn-start" onclick="startMockTest('ielts')">Start Mock Test</button>
+            </div>
+
+            <div class="mock-card">
+                <div class="mock-header">
+                    <div class="mock-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="mock-info">
+                        <h3>ETS Mock Test</h3>
+                        <div class="duration">Duration: 4 hours</div>
+                    </div>
+                </div>
+                <div class="mock-details">
+                    <ul>
+                        <li><span>Test Type:</span> <span>TOEFL/GRE</span></li>
+                        <li><span>Sections:</span> <span>4</span></li>
+                        <li><span>Score Range:</span> <span>0-120/340</span></li>
+                        <li><span>Attempts:</span> <span>Unlimited</span></li>
+                    </ul>
+                </div>
+                <button class="btn-start" onclick="startMockTest('ets')">Start Mock Test</button>
+            </div>
+
+            <div class="mock-card">
+                <div class="mock-header">
+                    <div class="mock-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="mock-info">
+                        <h3>CMA US Mock Test</h3>
+                        <div class="duration">Duration: 4 hours</div>
+                    </div>
+                </div>
+                <div class="mock-details">
+                    <ul>
+                        <li><span>Questions:</span> <span>100 MCQ + 2 Essays</span></li>
+                        <li><span>Parts:</span> <span>Part 1 & Part 2</span></li>
+                        <li><span>Passing Score:</span> <span>360/500</span></li>
+                        <li><span>Attempts:</span> <span>Unlimited</span></li>
+                    </ul>
+                </div>
+                <button class="btn-start" onclick="startMockTest('cma')">Start Mock Test</button>
+            </div>
+
+            <div class="mock-card">
+                <div class="mock-header">
+                    <div class="mock-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="mock-info">
+                        <h3>MRCS Mock Test</h3>
+                        <div class="duration">Duration: 3 hours</div>
+                    </div>
+                </div>
+                <div class="mock-details">
+                    <ul>
+                        <li><span>Questions:</span> <span>180 SBAs</span></li>
+                        <li><span>Parts:</span> <span>Part A & Part B</span></li>
+                        <li><span>Passing Score:</span> <span>Variable</span></li>
+                        <li><span>Attempts:</span> <span>Unlimited</span></li>
+                    </ul>
+                </div>
+                <button class="btn-start" onclick="startMockTest('mrcs')">Start Mock Test</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startMockTest(examType) {
+            const examNames = {
+                'prometric': 'Prometric',
+                'pearson': 'Pearson VUE',
+                'ielts': 'IELTS',
+                'ets': 'ETS',
+                'cma': 'CMA US',
+                'mrcs': 'MRCS'
+            };
+
+            if (confirm(`Are you ready to start the ${examNames[examType]} mock test? This will simulate the actual exam environment.`)) {
+                alert(`Starting ${examNames[examType]} mock test... You will be redirected to the test interface.`);
+                // In a real implementation, this would redirect to the actual mock test interface
+                // window.location.href = `mock-test-interface.html?exam=${examType}`;
+            }
+        }
+    </script>
+</body>
+</html>

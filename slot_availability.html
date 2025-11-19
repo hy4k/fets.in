@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slot Availability</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Import Montserrat if not already globally available */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap'); /* Example body font */
+
+    body {
+      font-family: 'Open Sans', sans-serif; /* Body font */
+      color: #333333; /* Charcoal text */
+      background-color: #ffffff; /* White background */
+    }
+
+    h1, h2, button, label, .exam-card span { /* Apply Montserrat to headings/buttons/labels */
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Header */
+    .page-header {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 28px; /* Slightly smaller */
+      font-weight: 700;
+      color: #333333;
+      background-color: #f4de6b; /* FETS Yellow background */
+      padding: 15px 0; /* Adjusted padding */
+      margin-bottom: 3rem;
+      border-radius: 8px; /* Rounded corners like button */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+    }
+
+    /* Logo Grid */
+    .logo-grid-container {
+      max-width: 70%; /* Slightly narrower */
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+      gap: 40px;
+      justify-items: center; /* Center items horizontally in grid cells */
+    }
+    .logo-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 50%; /* Make it a circle */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      width: 120px;  /* Set fixed width */
+      height: 120px; /* Set fixed height */
+      padding: 0.5rem; /* Reduced padding */
+      border: 3px solid #f4de6b; /* FETS Yellow border */
+    }
+    .logo-card:hover {
+      transform: scale(1.08); /* Slightly increased hover scale */
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18); /* Deeper shadow on hover */
+    }
+    .logo-card img {
+      width: 75px;  /* Increased logo size relative to card */
+      height: 75px; /* Increased logo size relative to card */
+      object-fit: contain; /* Ensure logo fits well */
+    }
+
+    /* Form */
+    .form-card {
+      background-color: #f5f5f5; /* Light Gray */
+      padding: 30px;
+      border-radius: 8px;
+      max-width: 900px;
+      margin: 3rem auto 0 auto; /* Add top margin, center horizontally */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .form-header { /* Style for the form header */
+      text-align: center;
+      font-size: 24px; /* Slightly smaller than page header */
+      font-weight: 700;
+      color: #333333;
+      background-color: #f4de6b; /* FETS Yellow background */
+      padding: 10px 0; /* Adjusted padding */
+      margin-bottom: 1.5rem; /* Space below header */
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* 2 columns */
+      gap: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 14px;
+      color: #333333;
+    }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea {
+      background-color: #ffffff;
+      border: 1px solid #f4de6b; /* FETS Yellow border */
+      padding: 0.75rem;
+      border-radius: 4px; /* Match button radius */
+      width: 100%;
+      font-size: 16px; /* Ensure readable body text size */
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      font-family: 'Open Sans', sans-serif; /* Ensure body font */
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #50cfea; /* FETS Blue */
+      box-shadow: 0 0 0 2px rgba(80, 207, 234, 0.4); /* Subtle focus ring */
+    }
+    textarea {
+      resize: vertical; /* Allow vertical resize */
+    }
+    .form-submit-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 4px;
+      background-color: #f4de6b; /* FETS Yellow */
+      color: #333333;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .form-submit-button:hover {
+      background-color: #e0c95f; /* Darken yellow slightly */
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .logo-grid {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+        gap: 20px; /* Reduce gap */
+      }
+      .form-grid {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+      }
+      .form-card {
+        padding: 16px; /* Reduce padding */
+        max-width: 100%;
+      }
+      .page-header {
+        font-size: 24px; /* Adjust header size */
+        padding: 16px 0;
+      }
+      .form-grid > div:nth-child(7) { /* Target textarea container */
+         grid-column: span 1; /* Ensure textarea spans 1 col on mobile */
+      }
+       textarea {
+         grid-column: span 1 / span 1; /* Explicitly set span for textarea */
+      }
+       .form-grid > div.md\:col-span-2 { /* Target elements with md:col-span-2 */
+         grid-column: span 1 !important; /* Override Tailwind's md breakpoint */
+      }
+      .form-header {
+        font-size: 20px; /* Adjust form header size on mobile */
+        padding: 8px 0;
+      }
+    }
+    /* Footer Styles */
+    .page-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      font-size: 14px;
+      color: #555555;
+    }
+    .quick-links-box {
+      display: inline-block;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      background-color: #ffffff;
+    }
+    .quick-links-box a {
+      margin: 0 0.5rem;
+      color: #50cfea; /* FETS Blue */
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .quick-links-box a:hover {
+      text-decoration: underline;
+    }
+    .contact-info a {
+       color: #50cfea; /* FETS Blue */
+       text-decoration: none;
+       font-weight: 600;
+    }
+     .contact-info a:hover {
+       text-decoration: underline;
+     }
+  </style>
+</head>
+<body class="bg-white">
+
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="page-header">Slot Availability</h1>
+
+    <!-- Exam Logo Grid -->
+    <div class="logo-grid-container mb-12">
+      <div class="logo-grid">
+        <div class="logo-card">
+          <a href="https://proscheduler.prometric.com/" target="_blank" rel="noopener noreferrer">
+            <img src="./images/CMA US.png" alt="CMA US Logo">
+          </a>
+        </div>
+        <div class="logo-card">
+          <a href="https://www.ets.org/toefl/test-takers/ibt/register.html" target="_blank" rel="noopener noreferrer">
+            <img src="./images/toefl-logo.png" alt="TOEFL Logo">
+          </a>
+        </div>
+        <div class="logo-card">
+          <a href="https://ereg.ets.org/ereg/public/jump?_p=GRI" target="_blank" rel="noopener noreferrer">
+            <img src="./images/gre.webp" alt="GRE Logo">
+          </a>
+        </div>
+        <div class="logo-card">
+          <a href="https://www.rcseng.ac.uk/education-and-exams/exams/search/intercollegiate-mrcs-part-a/" target="_blank" rel="noopener noreferrer">
+            <img src="./images/MRCS.png" alt="MRCS Logo">
+          </a>
+        </div>
+        <div class="logo-card">
+          <a href="https://www.accaglobal.com/in/en/student/exam-entry-and-administration/exam-timetables.html" target="_blank" rel="noopener noreferrer">
+            <img src="./images/ACCA.png" alt="ACCA Logo">
+          </a>
+        </div>
+        <div class="logo-card">
+          <a href="https://ieltsidpindia.com/registration/ielts-test-dates-india" target="_blank" rel="noopener noreferrer">
+            <img src="./images/IELTS-logo.png" alt="IELTS Logo">
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- "Can't find your exam?" Form -->
+    <div class="form-card">
+      <h2 class="form-header">Can’t find your exam?</h2>
+      <form action="#" method="POST">
+        <div class="form-grid">
+          <div>
+            <label for="exam-name">Exam Name</label>
+            <input type="text" id="exam-name" name="exam-name" required>
+          </div>
+          <div>
+            <label for="full-name">Full Name</label>
+            <input type="text" id="full-name" name="full-name" required>
+          </div>
+          <div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div>
+            <label for="preferred-center">Preferred Center</label>
+            <select id="preferred-center" name="preferred-center">
+              <option value="" disabled selected>Select a center</option>
+              <option value="center1">Center 1 (Example)</option>
+              <option value="center2">Center 2 (Example)</option>
+            </select>
+          </div>
+          <div>
+            <label for="preferred-date">Preferred Date</label>
+            <input type="date" id="preferred-date" name="preferred-date">
+          </div>
+          <div class="md:col-span-2">
+            <label for="comments">Additional Comments</label>
+            <textarea id="comments" name="comments" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="text-center mt-8">
+          <button type="submit" class="form-submit-button">
+            Submit Request
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="quick-links-box">
+            Quick Links:
+            <a href="https://fets.live/" target="_blank" rel="noopener noreferrer">FETS.Live</a> |
+            <a href="/mock_tests_popup.html">Mock Tests</a>
+        </div>
+        <p class="contact-info">
+            Contact / Help: <a href="tel:+918089393992">+91 8089393992</a>
+        </p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
